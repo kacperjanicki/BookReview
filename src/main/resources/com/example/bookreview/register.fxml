@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bookreview.RegisterController">
+   <children>
+      <VBox alignment="TOP_CENTER" layoutY="50.0" prefHeight="300.0" prefWidth="600.0">
+         <children>
+            <Label text="Register">
+               <font>
+                  <Font name="Century Gothic" size="29.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" prefHeight="47.0" prefWidth="600.0" spacing="20.0">
+               <children>
+                  <RadioButton fx:id="regular" mnemonicParsing="false" onAction="#preventTwoRadio" text="Regular user" />
+                  <RadioButton fx:id="author" mnemonicParsing="false" onAction="#preventTwoRadio" text="Author" />
+               </children>
+            </HBox>
+            <VBox prefHeight="120.0" prefWidth="600.0" spacing="5.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="51.0" prefWidth="600.0" spacing="20.0">
+                     <children>
+                        <Label text="Full Name" />
+                        <TextField fx:id="fullname" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="51.0" prefWidth="600.0" spacing="20.0">
+                     <children>
+                        <Label text="Password" />
+                        <PasswordField fx:id="passwordField" prefHeight="25.0" prefWidth="142.0" />
+
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="10.0" layoutY="61.0" prefHeight="51.0" prefWidth="600.0" spacing="20.0">
+                     <children>
+                        <Label text="Date of Birth" />
+                        <DatePicker fx:id="date" prefHeight="25.0" prefWidth="160.0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="invalid" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="10.0" layoutY="49.0" prefHeight="51.0" prefWidth="600.0" spacing="20.0">
+                     <children>
+                        <Button fx:id="goback" mnemonicParsing="false" onAction="#goBack" text="Go back">
+                           <HBox.margin>
+                              <Insets top="10.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#clear" text="Clear">
+                           <HBox.margin>
+                              <Insets top="10.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button fx:id="confirm" mnemonicParsing="false" onAction="#submit" text="Confirm">
+                           <HBox.margin>
+                              <Insets top="10.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children></VBox>
+   </children>
+</AnchorPane>
