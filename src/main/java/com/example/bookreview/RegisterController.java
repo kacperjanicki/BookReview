@@ -85,21 +85,47 @@ public class RegisterController {
         }
 
 
+
         String sql = "INSERT INTO Person(Name,Role,DateOfBirth,Password) VALUES (?,?,DATE (?),?);";
         try(Connection con = DBconnection.connection();
             PreparedStatement stmt = con.prepareStatement(sql);
             ){
+
+            if(User.userExists(name)){
+                invalid.setText("User already exists");
+                invalid.setStyle("-fx-text-fill: red");
+                return;
+            }
             stmt.setString(1,name);
             stmt.setString(2,role);
             stmt.setString(3,dateBirth);
             stmt.setString(4,hashedPassword);
 
-            stmt.executeUpdate();
-            System.out.println("User added successfully");
+            int rowsAffected = stmt.executeUpdate();
+            if(rowsAffected>0){
+                System.out.println("User added successfuly");
+                try{
+                    app.changeScene("main.fxml");
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }else{
+                System.out.println("Failed to add the user");
+                invalid.setText("Failed to add the user");
+                invalid.setStyle("-fx-text-fill: red");
+            }
 
 
-        } catch (SQLException e) {
-            e.printStackTrace();
+
+        }
+        catch (SQLException e) {
+            if (e.getSQLState().equals("23505")) { // PostgreSQL unique violation error code
+                invalid.setText("Username already exists! Choose another.");
+            } else {
+                invalid.setText("Database error: " + e.getMessage());
+            }
+            invalid.setStyle("-fx-text-fill: red;");
+            e.printStackTrace(); // Keep this to debug other errors
         }
         }
 
