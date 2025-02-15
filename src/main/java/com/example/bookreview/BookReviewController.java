@@ -18,14 +18,10 @@ public class BookReviewController {
     private Button logout;
     @FXML
     private Label user;
-    @FXML
-    private Button profile;
 
     private BookReviewApplication app;
     @FXML
     private HBox booksContainer;
-    @FXML
-    private VBox book1;
 
     public void setApplication(BookReviewApplication app){this.app = app;}
 
@@ -51,16 +47,16 @@ public class BookReviewController {
 //  Dynamically add VBoxes for books fetched from the DB
     public void loadBooks(){
         booksContainer.getChildren().clear();
-
         ArrayList<Book> books = getBooks();
         for(Book bk: books){
             try{
                 FXMLLoader bookloader = new FXMLLoader(getClass().getResource("book.fxml"));
                 VBox bookBox = bookloader.load();
-
                 BookController bkController = bookloader.getController();
-                bkController.setTitle(bk.title);
-
+                User author = User.getUser(
+                        "SELECT Name FROM person WHERE userid = ?;", bk.authorid
+                );
+                bkController.setData(bk.title,author.name,bk);
                 booksContainer.getChildren().add(bookBox);
             } catch (IOException e) {
                 throw new RuntimeException(e);

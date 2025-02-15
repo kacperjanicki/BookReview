@@ -26,17 +26,24 @@ public class BookReviewApplication extends Application {
         Parent welcomeRoot = welcomeLoader.load();
         WelcomeController welcomeController = welcomeLoader.getController();
         welcomeController.setApplication(this);
+//
+//        FXMLLoader bookpageLoader = new FXMLLoader(BookReviewApplication.class.getResource("bookPage.fxml"));
+//        Parent bookpageRoot = bookpageLoader.load();
+//        BookController bkController = bookpageLoader.getController();
+//        bkController.setApplication(this);
 
         Scene main = new Scene(startRoot, 600, 400);
 //        Scene login = new Scene(loginRoot, 500, 300);
         Scene welcome = new Scene(welcomeRoot, 600, 400);
+//        Scene bookView = new Scene(bookpageRoot,600,400);
 
         stage.setTitle("BookReview");
+        stage.setResizable(false);
         stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("library-placeholder.png"))));
 
 
         stage.setScene(welcome);
-//        stage.setResizable(false);
+        stage.setResizable(false);
         stage.show();
     }
 
@@ -44,13 +51,20 @@ public class BookReviewApplication extends Application {
         FXMLLoader loader = new FXMLLoader(BookReviewApplication.class.getResource(fmxlFile));
         Parent root = loader.load();
         Object controller = loader.getController();
+
         if(controller instanceof BookReviewController){
             ((BookReviewController) controller).setApplication(this);
         }else if (controller instanceof RegisterController) {
             ((RegisterController) controller).setApplication(this);
-        } else if (controller instanceof WelcomeController) {
-            ((WelcomeController) controller).setApplication(this);
+        } else if (controller instanceof BookController) {
+            ((BookController) controller).setApplication(this);
+        } else if (controller instanceof BookPageController) {
+            ((BookPageController) controller).setApplication(this);
+            ((BookPageController) controller).test(); // Pass book data
         }
+//        else if(controller instanceof BookPageController){
+//            ((BookPageController) controller).setApplication(this);
+//        }
         primaryStage.setScene(new Scene(root,600,400));
     }
 

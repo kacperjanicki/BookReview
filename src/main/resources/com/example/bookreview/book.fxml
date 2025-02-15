@@ -1,10 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<VBox alignment="CENTER" prefHeight="150.0" prefWidth="100.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bookreview.BookController">
+<VBox fx:id="bookContainer" alignment="CENTER" onMouseClicked="#onContainerClick" prefHeight="150.0" prefWidth="100.0" spacing="10.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bookreview.BookController">
     <children>
-      <Label fx:id="label" text="Label" />
+      <Label fx:id="title" textAlignment="CENTER" wrapText="true" />
+      <Label fx:id="author">
+         <padding>
+            <Insets top="-10.0" />
+         </padding>
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="100.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="false">
+         <viewport>
+            <Rectangle2D width="100.0" />
+         </viewport>
+         <image>
+            <Image url="@samplecover.jpg" />
+         </image></ImageView>
     </children>
 </VBox>
